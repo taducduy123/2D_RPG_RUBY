@@ -34,16 +34,16 @@ def handle_key_up(event, player)
   case event.key
     when 'w'
       player.upDirection = false
-      player.stop 
+      player.stop
     when 's'
       player.downDirection = false
-      player.stop 
+      player.stop
     when 'a'
       player.leftDirection = false
-      player.stop 
+      player.stop
     when 'd'
       player.rightDirection = false
-      player.stop 
+      player.stop
   end
 end
 
@@ -74,6 +74,12 @@ def get_key_input(player, interact_obj, interact_npc, monsters)
         player.myInventory.visible = true
         player.myInventory.display
       end
+
+    when 'f'
+      if player.myInventory.visible
+       player.useItem()
+      end
+
     when 'left'
       player.myInventory.move_cursor(-1, 0) if player.myInventory.visible
     when 'right'

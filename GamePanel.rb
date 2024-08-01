@@ -71,7 +71,7 @@ text1 = Text.new(
 
 textAfter = Text.new(
   '',
-  x: CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2), 
+  x: CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2),
   y: CP::SCREEN_HEIGHT / 2 - (CP::TILE_SIZE/2),
   style: 'bold',
   size: 20,

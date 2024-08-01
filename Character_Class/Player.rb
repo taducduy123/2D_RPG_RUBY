@@ -40,7 +40,7 @@ class Player
       x: CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2) - 25, # (768/2) - (48/2) = 360
       y: CP::SCREEN_HEIGHT / 2 - (CP::TILE_SIZE/2) - 20, # (576/2) - (48/2) = 264
       z: 20,                                                            #Precedence of show
-      width: width*2, height: height*2, 
+      width: width*2, height: height*2,
       animations: {
         static: [
           {
@@ -194,7 +194,7 @@ class Player
           }
         ]
       }
-       
+
     )
     @image.play(animation: :static, loop: true)
 
@@ -211,8 +211,8 @@ class Player
 
     #5. Attack damage
     @attack = 25
-    
-    #6. Health Bar 
+
+    #6. Health Bar
     @healthBar = HealthBar.new(
       200,
       200,
@@ -232,7 +232,7 @@ class Player
     )
     @magicBar.mana.x = CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2) - (width*2/3) - 15
 
-    
+
     #8. Direction and Facing
     @facing = 'right'
     @upDirection = false
@@ -240,7 +240,7 @@ class Player
     @leftDirection = false
     @rightDirection = false
 
-    
+
     #9. Solid Area to check collision with other objects
     @solidArea = Rectangle.new(
       x: 8, y: 16,            # Position
@@ -250,7 +250,7 @@ class Player
 
     #10. Hit box
     @hitBox = Rectangle.new(
-      x: @x + @solidArea.x, 
+      x: @x + @solidArea.x,
       y: @y + @solidArea.y,            # Position
       width: 32, height: 32,  # Size
       opacity: 1
@@ -356,7 +356,7 @@ class Player
 #-------------------------------- Attack and Special Skills -----------------------------------------
 
   def attackInBox(monsters)
-    
+
     case @facing
     when 'right'
       @image.play(animation: :attackSide) do
@@ -431,5 +431,15 @@ class Player
       @image.play(animation: :static, loop: true, flip: :horizontal)
     end
   end
+
+#------------Use item
+def useItem()
+  puts "Access my_inventory at #{myInventory.cursor_y} #{myInventory.cursor_x}"
+  if myInventory.my_inventory[myInventory.cursor_y][myInventory.cursor_x]
+    @healthBar.hp = @healthBar.hp + myInventory.my_inventory[myInventory.cursor_y][myInventory.cursor_x].effect
+    myInventory.removeItem(myInventory.cursor_y, myInventory.cursor_x)
+    @healthBar.update
+  end
+end
 
 end

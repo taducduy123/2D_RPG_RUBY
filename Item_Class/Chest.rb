@@ -78,7 +78,6 @@ class Chest
   end
 
   def removeItem()
-    @Inside_The_Chest.each(&:remove)
     @Inside_The_Chest.clear
     @isEmpty = true
   end
