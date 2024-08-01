@@ -50,7 +50,7 @@ npcs = [
 
 #------------------------- 1.5. Items Section --------------------------------
 insideChest = Meat.new
-insideChest2 = Meat.new
+insideChest2 = RottedItem.new
 items = [
           Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest),
           Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 10, insideChest2)

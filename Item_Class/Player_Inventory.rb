@@ -3,6 +3,7 @@ require_relative '../CollisionChecker'
 require_relative '../CommonParameter'
 require_relative '../WorldHandler'
 require_relative '../ImageHandler'
+require_relative '../Dialogue/ChatBubble'
 InventorySize = 9 / 3 # for 3x3 inventory
 TILE_SIZE = 100
 # Create a class for the inventory
@@ -14,7 +15,13 @@ class Inventory
     @IsFull = false
     @held_items_col = 0
     @held_items_row = 0
+    # Array to hold player items
     @my_inventory = Array.new(InventorySize) { Array.new(InventorySize, nil) }
+
+    @itemDescription = ChatBubble.new(0, Window.height - Window.height / 12,
+    Window.width ,Window.height / 5,"")
+    @itemDescription.hide
+
     @cursor
     @cursor_x = 0
     @cursor_y = 0
@@ -47,7 +54,7 @@ class Inventory
     end
   end
   def draw_cursor
-    if @cursor
+    if @cursor # create cursor if not existed , show/ hide when existed
       @cursor.add
     else
       @cursor = Image.new(
@@ -61,6 +68,12 @@ class Inventory
   def move_cursor(dx, dy)
     @cursor_x = (@cursor_x + dx) % InventorySize
     @cursor_y = (@cursor_y + dy) % InventorySize
+    if @my_inventory[@cursor_y][@cursor_x]
+      @itemDescription.show
+      @itemDescription.set_text(@my_inventory[@cursor_y][@cursor_x].description)
+    else
+      @itemDescription.hide
+    end
     @cursor.x = @cursor_x * TILE_SIZE + Window.width / 3
     @cursor.y = @cursor_y * TILE_SIZE + Window.height / 4
   end
@@ -80,6 +93,7 @@ class Inventory
   def display
     draw_grid
     draw_cursor
+    move_cursor(0,0)
   end
 
   def hide
@@ -92,6 +106,7 @@ class Inventory
     end
     @created_Items_Images.each(&:clear)
     @cursor.remove
+    @itemDescription.hide
   end
 
   def removeItem(row, col)

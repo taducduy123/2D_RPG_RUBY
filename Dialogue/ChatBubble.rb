@@ -10,7 +10,8 @@ class ChatBubble
       x: x,
       y: y,
       width: width,
-      height: height
+      height: height,
+      z: 4
     )
     @visible = true
 
@@ -19,7 +20,8 @@ class ChatBubble
       x: x + width / 3, y: y + 10,
       style: 'bold',
       size: 15,
-      color: 'black'
+      color: 'black',
+      z: 5
     )
   end
 
