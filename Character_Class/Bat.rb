@@ -64,47 +64,47 @@ class Bat < Monster
 
 
 #------------------------------ Random Move ---------------------------------------------------
-def randMove(player, map, items, npcs, monsters)
+  def randMove(player, map, items, npcs, monsters)
 
-  @moveCounter = @moveCounter + 1
-  # generate a random number after every 120 steps
-  if(@moveCounter == 120)
-    @upDirection = false
-    @downDirection = false
-    @leftDirection = false
-    @rightDirection = false
+    @moveCounter = @moveCounter + 1
+    # generate a random number after every 120 steps
+    if(@moveCounter == 120)
+      @upDirection = false
+      @downDirection = false
+      @leftDirection = false
+      @rightDirection = false
 
-    ranNum = rand(1..100)
-    if(1 <= ranNum && ranNum <= 25)
-      @upDirection = true
-    elsif(25 < ranNum && ranNum <= 50)
-      @downDirection = true
-    elsif(50 < ranNum && ranNum <= 75)
-      @leftDirection = true
-    else
-      @rightDirection = true
+      ranNum = rand(1..100)
+      if(1 <= ranNum && ranNum <= 25)
+        @upDirection = true
+      elsif(25 < ranNum && ranNum <= 50)
+        @downDirection = true
+      elsif(50 < ranNum && ranNum <= 75)
+        @leftDirection = true
+      else
+        @rightDirection = true
+      end
+    @moveCounter = 0 #reset moveCounter
     end
-  @moveCounter = 0 #reset moveCounter
-  end
 
 
-  # Checking collision before moving
-  self.checkCollision(player, map, items, npcs, monsters)
+    # Checking collision before moving
+    self.checkCollision(player, map, items, npcs, monsters)
 
-  # If no collison is detected, then move monster
-  if(@collisionOn == false)
-    if(self.upDirection == true)
-      @worldY -= @speed
-    elsif(self.downDirection == true)
-      @worldY += @speed
-    elsif(self.leftDirection == true)
-      @worldX -= @speed
-    elsif(self.rightDirection == true)
-      @worldX += @speed
+    # If no collison is detected, then move monster
+    if(@collisionOn == false)
+      if(self.upDirection == true)
+        @worldY -= @speed
+      elsif(self.downDirection == true)
+        @worldY += @speed
+      elsif(self.leftDirection == true)
+        @worldX -= @speed
+      elsif(self.rightDirection == true)
+        @worldX += @speed
+      end
     end
-  end
 
-end
+  end
 
 end
 

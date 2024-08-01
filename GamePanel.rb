@@ -12,6 +12,8 @@ require_relative 'FindingPath/PathFinder'
 require_relative 'Character_Class/Warrior'
 require_relative 'Item_Class/Chest'
 require_relative 'Item_Class/Loot_item'
+require_relative 'Character_Class/Minotaur'
+
 
 include CCHECK
 
@@ -26,10 +28,18 @@ player = Player.new(1*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SI
 
 #------------------------- 1.3. Monsters Section --------------------------------
 monsters = [
+            Minotaur.new(24*CP::TILE_SIZE, 27*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(30*CP::TILE_SIZE, 6*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(39*CP::TILE_SIZE, 12*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(1*CP::TILE_SIZE, 37*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(11*CP::TILE_SIZE, 36*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(36*CP::TILE_SIZE, 28*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
             Bat.new(16*CP::TILE_SIZE, 0*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
-            Bat.new(16*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
-            Skeleton.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
-            # Bat.new(1500, 1500, CP::TILE_SIZE, CP::TILE_SIZE, player)
+            Bat.new(1*CP::TILE_SIZE, 13*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(1*CP::TILE_SIZE, 33*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(3*CP::TILE_SIZE, 31*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(35*CP::TILE_SIZE, 20*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(32*CP::TILE_SIZE, 36*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
            ]
 
 #------------------------- 1.4. NPCs Section --------------------------------
@@ -61,7 +71,7 @@ text = Text.new(
 
 text1 = Text.new(
   '',
-  x: 450, y: 0,
+  x: 465, y: 0,
   #font: 'vera.ttf',
   style: 'bold',
   size: 20,
@@ -70,14 +80,36 @@ text1 = Text.new(
   #z: 10
 )
 
-textAfter = Text.new(
+text2 = Text.new(
   '',
-  x: CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2),
-  y: CP::SCREEN_HEIGHT / 2 - (CP::TILE_SIZE/2),
+  x: 465, y: 30,
+  #font: 'vera.ttf',
   style: 'bold',
   size: 20,
   color: 'white',
+  #rotate: 90,
+  #z: 10
 )
+
+text_Win = Text.new(
+  'VICTORY!!!',
+  x: CP::SCREEN_WIDTH / 2 - 180,
+  y: CP::SCREEN_HEIGHT / 2 - 80,
+  style: 'bold',
+  size: 72,
+  color: 'white',
+)
+text_Win.remove
+
+text_Loose = Text.new(
+  'GAME OVER!',
+  x: CP::SCREEN_WIDTH / 2 - 220,
+  y: CP::SCREEN_HEIGHT / 2 - 80,
+  style: 'bold',
+  size: 72,
+  color: 'white',
+)
+text_Loose.remove
 
 
 
@@ -112,8 +144,15 @@ update do
     end
 
     #3. Update Texts
-    text.text = "Coordinate: #{player.worldX}   #{player.worldY} "
-    text1.text = "Coordinate Skeleton: #{monsters[2].worldX}    #{monsters[2].worldY}"
+    text.text = "Hero Coordinate: #{player.worldX}   #{player.worldY} "
+    text1.text = "Minotaur Coordinate: #{monsters[0].worldX}   #{monsters[0].worldY}"
+    currentNumberOfMonsters = 0
+    for i in 0..(monsters.length - 1)
+      if(monsters[i].exist == true)
+        currentNumberOfMonsters = currentNumberOfMonsters + 1
+      end
+    end
+    text2.text = "Total Monsters: #{currentNumberOfMonsters} / #{monsters.length }"
 
     #4. Update NPCs
     current_interacting_npc = -1
@@ -143,15 +182,13 @@ update do
       if !@isSwitched
         Window.clear
         @isSwitched = true
-        textAfter.text = 'You Loose!'
-        textAfter.add
+        text_Loose.add
       end
     when false
       if !@isSwitched
         Window.clear
         @isSwitched = true
-        textAfter.text = 'You won !!!'
-        textAfter.add
+        text_Win.add
       end
     end
   end
