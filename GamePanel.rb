@@ -53,7 +53,10 @@ insideChest = Meat.new
 insideChest2 = RottedItem.new
 items = [
           Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest),
-          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 10, insideChest2)
+          Chest.new(CP::TILE_SIZE * 3, CP::TILE_SIZE * 13, insideChest2),
+          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 38, insideChest),
+          Chest.new(CP::TILE_SIZE * 30, CP::TILE_SIZE * 36, insideChest),
+          Chest.new(CP::TILE_SIZE * 35, CP::TILE_SIZE * 3, insideChest)
         ]
 
 
