@@ -39,7 +39,7 @@ class Player
       'Image/Player.png',
       x: CP::SCREEN_WIDTH / 2 - (CP::TILE_SIZE/2) - 25, # (768/2) - (48/2) = 360
       y: CP::SCREEN_HEIGHT / 2 - (CP::TILE_SIZE/2) - 20, # (576/2) - (48/2) = 264
-      z: 20,                                                            #Precedence of show
+      z: 2,                                                            #Precedence of show
       width: width*2, height: height*2,
       animations: {
         static: [
