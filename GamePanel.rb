@@ -27,12 +27,19 @@ map = GameMap.new()
 player = Player.new(1*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE)
 
 #------------------------- 1.3. Monsters Section --------------------------------
-monsters = [
+monsters = [  
+            Minotaur.new(24*CP::TILE_SIZE, 27*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(30*CP::TILE_SIZE, 6*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(39*CP::TILE_SIZE, 12*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(1*CP::TILE_SIZE, 37*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(11*CP::TILE_SIZE, 36*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Skeleton.new(36*CP::TILE_SIZE, 28*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
             Bat.new(16*CP::TILE_SIZE, 0*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
-            Bat.new(16*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
-            Minotaur.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
-            #Skeleton.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
-            # Bat.new(1500, 1500, CP::TILE_SIZE, CP::TILE_SIZE, player)
+            Bat.new(1*CP::TILE_SIZE, 13*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(1*CP::TILE_SIZE, 33*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(3*CP::TILE_SIZE, 31*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(35*CP::TILE_SIZE, 20*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
+            Bat.new(32*CP::TILE_SIZE, 36*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
            ]
 
 #------------------------- 1.4. NPCs Section --------------------------------
@@ -44,8 +51,11 @@ npcs = [
 #------------------------- 1.5. Items Section --------------------------------
 insideChest = Meat.new
 items = [
-          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest)
-
+          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest),
+          Chest.new(CP::TILE_SIZE * 3, CP::TILE_SIZE * 13, insideChest),
+          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 38, insideChest),
+          Chest.new(CP::TILE_SIZE * 30, CP::TILE_SIZE * 36, insideChest),
+          Chest.new(CP::TILE_SIZE * 35, CP::TILE_SIZE * 3, insideChest)
         ]
 
 
