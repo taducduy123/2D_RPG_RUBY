@@ -79,15 +79,17 @@ class Inventory
   end
 
   def add_to_inventory(loot) # Methods to add items properly
-    if @held_items_row < @my_inventory.size
-      @my_inventory[@held_items_row][@held_items_col] = loot[0] # WORKS only with 1 item per chest
-      @held_items_col += 1
-      if @held_items_col != 0 && @held_items_col % InventorySize == 0 # to convert 1d array to 2d array
-        @held_items_col = 0                                           #
-        @held_items_row += 1
+    found = false
+    @my_inventory.each_with_index do |row, row_index|
+      row.each_with_index do |element, col_index|
+        if @my_inventory[row_index][col_index] == nil && loot[0] != nil
+          @my_inventory[row_index][col_index] = loot[0] #Works only for 1 item in chest
+          found = true
+          break
+        end
       end
+      break if found
     end
-
   end
 
   def display
@@ -113,6 +115,5 @@ class Inventory
     @my_inventory[row][col] = nil
     @created_Items_Images[row][col].remove
     @created_Items_Images[row].delete_at(col)
-    @my_inventory
   end
 end
