@@ -12,6 +12,8 @@ require_relative 'FindingPath/PathFinder'
 require_relative 'Character_Class/Warrior'
 require_relative 'Item_Class/Chest'
 require_relative 'Item_Class/Loot_item'
+require_relative 'Character_Class/Minotaur'
+
 
 include CCHECK
 
@@ -28,7 +30,8 @@ player = Player.new(1*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SI
 monsters = [
             Bat.new(16*CP::TILE_SIZE, 0*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
             Bat.new(16*CP::TILE_SIZE, 1*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player),
-            Skeleton.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
+            Minotaur.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
+            #Skeleton.new(26*CP::TILE_SIZE, 5*CP::TILE_SIZE, CP::TILE_SIZE, CP::TILE_SIZE, player)
             # Bat.new(1500, 1500, CP::TILE_SIZE, CP::TILE_SIZE, player)
            ]
 
