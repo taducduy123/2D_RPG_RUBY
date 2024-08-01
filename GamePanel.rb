@@ -40,9 +40,10 @@ npcs = [
 
 #------------------------- 1.5. Items Section --------------------------------
 insideChest = Meat.new
+insideChest2 = Meat.new
 items = [
-          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest)
-
+          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 4, insideChest),
+          Chest.new(CP::TILE_SIZE * 6, CP::TILE_SIZE * 10, insideChest2)
         ]
 
 
@@ -115,15 +116,25 @@ update do
     text1.text = "Coordinate Skeleton: #{monsters[2].worldX}    #{monsters[2].worldY}"
 
     #4. Update NPCs
+    current_interacting_npc = -1
     for i in 0..(npcs.length - 1)
       npcs[i].updateNPC(player, map, i)
+      if player.talktoNpc != -1
+        current_interacting_npc = player.talktoNpc
+      end
     end
-
-    #5. Update Items in map
+    # Restore the interaction state after processing all items
+    player.talktoNpc = -current_interacting_npc
+    #5. Update Items in map and preserve player.interacting
+    current_interacting_chest = -1
     for i in 0..(items.length - 1)
       items[i].updateChest(player, i)
+      if player.interacting != -1
+        current_interacting_chest = player.interacting
+      end
     end
-
+    # Restore the interaction state after processing all items
+    player.interacting = current_interacting_chest
     #6. Update Map
     map.updateMap(player)
   else

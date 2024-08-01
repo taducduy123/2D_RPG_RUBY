@@ -47,8 +47,7 @@ class Chest
      @activemess.hide
   end
 
-  def PlayerInteract (player)
-
+  def playerInteract (player)
     @image.play animation: :open
     if !(@isEmpty)
       if player.myInventory.IsFull

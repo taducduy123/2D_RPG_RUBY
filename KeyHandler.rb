@@ -90,9 +90,13 @@ def get_key_input(player, interact_obj, interact_npc, monsters)
       player.myInventory.move_cursor(0, 1) if player.myInventory.visible
     #handles interaction
     when 'x'
-      interact_npc[player.interacting].chatprogress += 1 if player.talktoNpc >= 0
+      if player.talktoNpc >= 0
+       interact_npc[player.talktoNpc].chatprogress += 1
+      end
     when 'e'
-      interact_obj[player.interacting].PlayerInteract(player) if player.interacting >=0
+      if player.interacting > -1
+       interact_obj[player.interacting].playerInteract(player)
+      end
     end
   end
 end

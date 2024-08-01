@@ -263,7 +263,7 @@ class Player
     @collision_with_item_index = -1                 # When collision with Item. The collided Item is identified by array index
 
     #12. State of interaction
-    @interacting
+    @interacting = -1
     @talktoNpc
 
     #13. Inventory
