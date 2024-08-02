@@ -2,8 +2,8 @@ require 'ruby2d'
 
 class MagicBar
 
-  attr_reader :hp, :x, :y
-  attr_writer :hp,:x, :y
+  attr_reader :mp, :x, :y
+  attr_writer :mp,:x, :y
   attr_accessor :mana, :rec1, :rec2
 
   def initialize(mp, maxMp, x, y, leng)
@@ -18,19 +18,27 @@ class MagicBar
       z: 2
     )
 
-    #the maxHp bar
+    #the maxMp bar
     @rec1 = Rectangle.new(
       x: x, y: y,
       width: leng + 4, height: 12, #plus 4 to make the right and left border for the health bar (each is 2 pixel)
       color: 'black',
       z: 0
     )
-    # the hp bar
+    # the mp bar
     @rec2 = Rectangle.new(
       x: x + 2, y: y + 2,
       width: (@mp*1.00/@maxMp)*leng , height: 8,
       color: 'blue',
       z: 1
+    )
+
+    @rec3 = Rectangle.new(
+      x: x + leng/2 + 1, y: y+1,
+      width: 2, height: 11,
+      color: 'white',
+      z:3,
+      opacity: 0.5
     )
   end
 
@@ -40,6 +48,9 @@ class MagicBar
     
     @rec2.x = x
     @rec2.y = y
+
+    @rec3.x = x
+    @rec3.y = y
 
     @mana.x = x
     @mana.y = y

@@ -108,6 +108,7 @@ class GameMap
                                 player.beAttacked(1)
                             when false
                                 player.beAttacked(-1)
+                                player.magicBar.mp += 0.9
                             end
                         end
                     end
